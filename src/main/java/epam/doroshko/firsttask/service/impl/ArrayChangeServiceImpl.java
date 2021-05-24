@@ -8,7 +8,7 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
 
   public void changeNegativesToOpposite(CustomArray array) {
     int[] temp = array.getArray();
-    for (int i = 0; i < temp.length; ++i) {
+    for (var i = 0; i < temp.length; ++i) {
       if (temp[i] < 0) {
         temp[i] *= -1;
       }
@@ -21,7 +21,7 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
     ArrayCalculateService service = new ArrayCalculateServiceImpl();
     int min = service.findMin(array);
     int max = service.findMax(array);
-    for (int i = 0; i < temp.length; ++i) {
+    for (var i = 0; i < temp.length; ++i) {
       if (temp[i] == min) {
         temp[i] = max;
       }

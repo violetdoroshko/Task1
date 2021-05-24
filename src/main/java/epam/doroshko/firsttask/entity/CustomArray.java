@@ -1,10 +1,15 @@
 package epam.doroshko.firsttask.entity;
 
 import epam.doroshko.firsttask.exception.CustomArrayException;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 
+
 public class CustomArray {
+  private static final Logger logger = LogManager.getLogger();
   private int[] array;
 
   public CustomArray(int... array) {
@@ -24,16 +29,20 @@ public class CustomArray {
   }
 
   public int getElement(int i) throws CustomArrayException {
-    if (i < 0 || i >= getLength())
-      throw new CustomArrayException("Index " + i + " is out of bounds [0;" + (getLength() - 1) + "]");
+    if (i < 0 || i >= getLength()) {
+      var message = new StringBuilder().append("Index ").
+              append(i).append(" is out of bounds [0;").append(getLength() - 1).append("]");
+      logger.log(Level.ERROR, message);
+      throw new CustomArrayException(message.toString());
+    }
     return array[i];
   }
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("CustomArray{" +
-            "array=");
+    var sb = new StringBuilder();
+    sb.append("CustomArray{"
+            + "array=");
     sb.append(Arrays.toString(array));
     sb.append('}');
     return sb.toString();
@@ -41,8 +50,12 @@ public class CustomArray {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
     CustomArray array1 = (CustomArray) o;
     return Arrays.equals(array, array1.array);
   }

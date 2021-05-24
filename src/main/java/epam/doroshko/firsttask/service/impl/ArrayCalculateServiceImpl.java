@@ -6,7 +6,7 @@ import epam.doroshko.firsttask.service.ArrayCalculateService;
 public class ArrayCalculateServiceImpl implements ArrayCalculateService {
 
   public long calculateSumOfArrayElements(CustomArray array) {
-    long sum = 0L;
+    var sum = 0L;
     int[] temp = array.getArray();
     for (int j : temp) {
       sum += j;
@@ -20,7 +20,7 @@ public class ArrayCalculateServiceImpl implements ArrayCalculateService {
   }
 
   public int calculateAmountOfPositiveArrayElements(CustomArray array) {
-    int amountOfPositiveArrayElements = 0;
+    var amountOfPositiveArrayElements = 0;
     int[] temp = array.getArray();
     for (int j : temp) {
       if (j > 0) {
@@ -31,7 +31,7 @@ public class ArrayCalculateServiceImpl implements ArrayCalculateService {
   }
 
   public int calculateAmountOfNegativeArrayElements(CustomArray array) {
-    int amountOfNegativeArrayElements = 0;
+    var amountOfNegativeArrayElements = 0;
     int[] temp = array.getArray();
     for (int j : temp) {
       if (j < 0) {
@@ -45,7 +45,7 @@ public class ArrayCalculateServiceImpl implements ArrayCalculateService {
   public int findMin(CustomArray array) {
     int[] temp = array.getArray();
     int min = temp[0];
-    for (int i = 1; i < temp.length; ++i) {
+    for (var i = 1; i < temp.length; ++i) {
       if (min > temp[i]) {
         min = temp[i];
       }
@@ -56,7 +56,7 @@ public class ArrayCalculateServiceImpl implements ArrayCalculateService {
   public int findMax(CustomArray array) {
     int[] temp = array.getArray();
     int max = temp[0];
-    for (int i = 1; i < temp.length; ++i) {
+    for (var i = 1; i < temp.length; ++i) {
       if (max < temp[i]) {
         max = temp[i];
       }

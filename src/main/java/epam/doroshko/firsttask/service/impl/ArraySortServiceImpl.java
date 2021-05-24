@@ -11,10 +11,10 @@ public class ArraySortServiceImpl {
 
   public void bubbleSort(CustomArray array) {
     int[] temp = array.getArray();
-    boolean hasChanged = true;
+    var hasChanged = true;
     while (hasChanged) {
       hasChanged = false;
-      for (int i = 0; i < temp.length - 1; ++i) {
+      for (var i = 0; i < temp.length - 1; ++i) {
         if (temp[i] > temp[i + 1]) {
           hasChanged = true;
           swap(temp, i, i + 1);
@@ -59,7 +59,7 @@ public class ArraySortServiceImpl {
 
   public void insertionSort(CustomArray array) {
     int[] temp = array.getArray();
-    for (int left = 0; left < temp.length; ++left) {
+    for (var left = 0; left < temp.length; ++left) {
       int key = temp[left];
       int i = left - 1;
       for (; i >= 0; --i) {
