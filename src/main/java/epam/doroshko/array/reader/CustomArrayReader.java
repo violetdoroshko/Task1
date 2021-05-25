@@ -17,11 +17,13 @@ public class CustomArrayReader {
 
     try (var bufferedReader = new BufferedReader(new FileReader(path))) {
       CustomArrayValidator validator = new CustomArrayValidator();
-
       var string = bufferedReader.readLine();
 
-      if (validator.isValidate(string)) {
-        return string;
+      while (string != null) {
+        if (validator.isValidate(string)) {
+          return string;
+        }
+        string = bufferedReader.readLine();
       }
       logger.log(Level.ERROR, "File is incorrect");
       throw new CustomArrayException("File is incorrect");
