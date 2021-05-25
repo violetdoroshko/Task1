@@ -2,8 +2,12 @@ package epam.doroshko.array.service.impl;
 
 import epam.doroshko.array.entity.CustomArray;
 import epam.doroshko.array.service.ArraySortService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ArraySortServiceImpl implements ArraySortService {
+  private static final Logger logger = LogManager.getLogger();
+
   void swap(int[] array, int i, int j) {
     int temp = array[i];
     array[i] = array[j];
@@ -24,6 +28,7 @@ public class ArraySortServiceImpl implements ArraySortService {
       }
     }
     array.setArray(temp);
+    logger.info("Array was sorted with bubble sort");
   }
 
   @Override
@@ -31,6 +36,7 @@ public class ArraySortServiceImpl implements ArraySortService {
     int[] temp = array.getArray();
     quickSort(temp, 0, temp.length - 1);
     array.setArray(temp);
+    logger.info("Array was sorted with quick sort");
   }
 
   private void quickSort(int[] array, int left, int right) {
@@ -76,5 +82,6 @@ public class ArraySortServiceImpl implements ArraySortService {
       temp[i + 1] = key;
     }
     array.setArray(temp);
+    logger.info("Array was sorted with insertion sort");
   }
 }

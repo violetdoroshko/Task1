@@ -4,8 +4,12 @@ import epam.doroshko.array.entity.CustomArray;
 import epam.doroshko.array.exception.CustomArrayException;
 import epam.doroshko.array.service.ArrayCalculateService;
 import epam.doroshko.array.service.ArrayChangeService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ArrayChangeServiceImpl implements ArrayChangeService {
+
+  private static final Logger logger = LogManager.getLogger();
 
   @Override
   public void changeNegativesToOpposite(CustomArray array) {
@@ -16,6 +20,7 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
       }
     }
     array.setArray(temp);
+    logger.info("All negative elements were changed to opposite");
   }
 
   @Override
@@ -30,5 +35,6 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
       }
     }
     array.setArray(temp);
+    logger.info("All min elements were changed to max elements");
   }
 }
