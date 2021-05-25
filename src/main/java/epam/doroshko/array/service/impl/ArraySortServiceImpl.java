@@ -1,14 +1,16 @@
-package epam.doroshko.firsttask.service.impl;
+package epam.doroshko.array.service.impl;
 
-import epam.doroshko.firsttask.entity.CustomArray;
+import epam.doroshko.array.entity.CustomArray;
+import epam.doroshko.array.service.ArraySortService;
 
-public class ArraySortServiceImpl {
+public class ArraySortServiceImpl implements ArraySortService {
   void swap(int[] array, int i, int j) {
     int temp = array[i];
     array[i] = array[j];
     array[j] = temp;
   }
 
+  @Override
   public void bubbleSort(CustomArray array) {
     int[] temp = array.getArray();
     var hasChanged = true;
@@ -24,6 +26,7 @@ public class ArraySortServiceImpl {
     array.setArray(temp);
   }
 
+  @Override
   public void quickSort(CustomArray array) {
     int[] temp = array.getArray();
     quickSort(temp, 0, temp.length - 1);
@@ -57,6 +60,7 @@ public class ArraySortServiceImpl {
     return rightIndex;
   }
 
+  @Override
   public void insertionSort(CustomArray array) {
     int[] temp = array.getArray();
     for (var left = 0; left < temp.length; ++left) {

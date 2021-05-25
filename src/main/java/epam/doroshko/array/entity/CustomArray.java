@@ -1,6 +1,6 @@
-package epam.doroshko.firsttask.entity;
+package epam.doroshko.array.entity;
 
-import epam.doroshko.firsttask.exception.CustomArrayException;
+import epam.doroshko.array.exception.CustomArrayException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -63,5 +63,9 @@ public class CustomArray {
   @Override
   public int hashCode() {
     return Arrays.hashCode(array);
+  }
+
+  public boolean isEmpty() {
+    return this.getLength() == 0;
   }
 }

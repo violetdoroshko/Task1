@@ -1,6 +1,6 @@
-package epam.doroshko.firsttask.service;
+package epam.doroshko.array.service;
 
-import epam.doroshko.firsttask.entity.CustomArray;
+import epam.doroshko.array.entity.CustomArray;
 
 public interface ArraySortService {
   void bubbleSort(CustomArray array);

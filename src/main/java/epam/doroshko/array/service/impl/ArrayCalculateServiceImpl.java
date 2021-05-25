@@ -1,10 +1,12 @@
-package epam.doroshko.firsttask.service.impl;
+package epam.doroshko.array.service.impl;
 
-import epam.doroshko.firsttask.entity.CustomArray;
-import epam.doroshko.firsttask.service.ArrayCalculateService;
+import epam.doroshko.array.entity.CustomArray;
+import epam.doroshko.array.exception.CustomArrayException;
+import epam.doroshko.array.service.ArrayCalculateService;
 
 public class ArrayCalculateServiceImpl implements ArrayCalculateService {
 
+  @Override
   public long calculateSumOfArrayElements(CustomArray array) {
     var sum = 0L;
     int[] temp = array.getArray();
@@ -14,11 +16,16 @@ public class ArrayCalculateServiceImpl implements ArrayCalculateService {
     return sum;
   }
 
-  public int calculateAverageOfArrayElements(CustomArray array) {
+  @Override
+  public double calculateAverageOfArrayElements(CustomArray array) throws CustomArrayException {
+    if (array.isEmpty()) {
+      throw new CustomArrayException("Average of elements can't be found in empty array");
+    }
     int[] temp = array.getArray();
-    return (int) calculateSumOfArrayElements(array) / temp.length;
+    return  (double) calculateSumOfArrayElements(array) / temp.length;
   }
 
+  @Override
   public int calculateAmountOfPositiveArrayElements(CustomArray array) {
     var amountOfPositiveArrayElements = 0;
     int[] temp = array.getArray();
@@ -30,6 +37,7 @@ public class ArrayCalculateServiceImpl implements ArrayCalculateService {
     return amountOfPositiveArrayElements;
   }
 
+  @Override
   public int calculateAmountOfNegativeArrayElements(CustomArray array) {
     var amountOfNegativeArrayElements = 0;
     int[] temp = array.getArray();
@@ -41,8 +49,11 @@ public class ArrayCalculateServiceImpl implements ArrayCalculateService {
     return amountOfNegativeArrayElements;
   }
 
-
-  public int findMin(CustomArray array) {
+  @Override
+  public int findMin(CustomArray array) throws CustomArrayException {
+    if (array.isEmpty()) {
+      throw new CustomArrayException("Min element can't be found in empty array");
+    }
     int[] temp = array.getArray();
     int min = temp[0];
     for (var i = 1; i < temp.length; ++i) {
@@ -53,7 +64,11 @@ public class ArrayCalculateServiceImpl implements ArrayCalculateService {
     return min;
   }
 
-  public int findMax(CustomArray array) {
+  @Override
+  public int findMax(CustomArray array) throws CustomArrayException {
+    if (array.isEmpty()) {
+      throw new CustomArrayException("Max element can't be found in empty array");
+    }
     int[] temp = array.getArray();
     int max = temp[0];
     for (var i = 1; i < temp.length; ++i) {

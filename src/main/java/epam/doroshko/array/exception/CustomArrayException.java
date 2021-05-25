@@ -1,4 +1,4 @@
-package epam.doroshko.firsttask.exception;
+package epam.doroshko.array.exception;
 
 public class CustomArrayException extends Exception{
 
