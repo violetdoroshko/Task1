@@ -3,9 +3,10 @@ package epam.doroshko.array.validator;
 import java.util.regex.Pattern;
 
 public class CustomArrayValidator {
+  private static final String ISNUMBER = "(^-?(\\d)+\\s)*(-?(\\d)+)$";
+
   public boolean isValidate(String str) {
-    final var regularString = "^-?(\\d)+((\\s)+-?(\\d)+)*$";
-    var pattern = Pattern.compile(regularString);
+    var pattern = Pattern.compile(ISNUMBER);
     var matcher = pattern.matcher(str);
     return matcher.matches();
   }
