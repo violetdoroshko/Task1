@@ -6,26 +6,25 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.FileNotFoundException;
+import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.Scanner;
+import java.io.IOException;
 
 public class CustomArrayReader {
   private static final Logger logger = LogManager.getLogger();
 
-  public String readFromFile(String path) throws CustomArrayException, FileNotFoundException {
-    var reader = new FileReader(path);
-    var scan = new Scanner(reader);
-    CustomArrayValidator validator = new CustomArrayValidator();
-    while (scan.hasNextLine()) {
-      var string = scan.nextLine();
+  public String readCustomArrayFromFile(String path) throws CustomArrayException, IOException {
+
+    try (var bufferedReader = new BufferedReader(new FileReader(path))) {
+      CustomArrayValidator validator = new CustomArrayValidator();
+
+      var string = bufferedReader.readLine();
+
       if (validator.isValidate(string)) {
-        scan.close();
         return string;
       }
+      logger.log(Level.ERROR, "File is incorrect");
+      throw new CustomArrayException("File is incorrect");
     }
-    scan.close();
-    logger.log(Level.ERROR, "There is no correct line in the file!");
-    throw new CustomArrayException("There is no correct line in the file!");
   }
 }
