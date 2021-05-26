@@ -5,7 +5,7 @@ import epam.doroshko.array.exception.CustomArrayException;
 import epam.doroshko.array.service.impl.ArrayCalculateServiceImpl;
 import org.testng.annotations.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertThrows;
 
 //TODO: calculateAmountOfPositiveArrayElements(), calculateAmountOfNegativeArrayElements().

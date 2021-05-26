@@ -4,7 +4,7 @@ import epam.doroshko.array.entity.CustomArray;
 
 public class CustomArrayParser {
   public CustomArray parse(String str) {
-
+/*
     final var space = "//s";
     int length = str.split(space).length;
     var array = new int[length];
@@ -13,6 +13,7 @@ public class CustomArrayParser {
       array[i] = Integer.parseInt(element);
       ++i;
     }
-    return new CustomArray(array);
+    return new CustomArray(array);*/
+    return null;
   }
 }
