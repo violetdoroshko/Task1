@@ -7,9 +7,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 
-
 public class CustomArray {
-  private static final Logger logger = LogManager.getLogger();
+  private static final Logger logger = LogManager.getLogger("CustomArray");
   private int[] array;
 
   public CustomArray(int... array) {
@@ -20,7 +19,7 @@ public class CustomArray {
     return array.clone();
   }
 
-  public void setArray(int[] array) {
+  public void setArray(int... array) {
     this.array = array;
   }
 
@@ -30,22 +29,11 @@ public class CustomArray {
 
   public int getElement(int i) throws CustomArrayException {
     if (i < 0 || i >= getLength()) {
-      var message = new StringBuilder().append("Index ").
-              append(i).append(" is out of bounds [0;").append(getLength() - 1).append("]");
-      logger.log(Level.ERROR, message);
-      throw new CustomArrayException(message.toString());
+      logger.log(Level.ERROR, "Index " + i + " is out of bounds [0;" + (getLength() - 1) + "]");
+      throw new CustomArrayException(
+              "Index " + i + " is out of bounds [0;" + (getLength() - 1) + "]");
     }
     return array[i];
-  }
-
-  @Override
-  public String toString() {
-    var sb = new StringBuilder();
-    sb.append("CustomArray{"
-            + "array=");
-    sb.append(Arrays.toString(array));
-    sb.append('}');
-    return sb.toString();
   }
 
   @Override
@@ -67,5 +55,14 @@ public class CustomArray {
 
   public boolean isEmpty() {
     return this.getLength() == 0;
+  }
+
+  @Override
+  public String toString() {
+    var sb = new StringBuilder();
+    sb.append("CustomArray{array= ");
+    sb.append(Arrays.toString(array));
+    sb.append('}');
+    return sb.toString();
   }
 }

@@ -9,32 +9,41 @@ import org.apache.logging.log4j.Logger;
 
 public class ArrayChangeServiceImpl implements ArrayChangeService {
 
-  private static final Logger logger = LogManager.getLogger();
+  private static final Logger logger = LogManager.getLogger("ArrayChangeService");
 
   @Override
   public void changeNegativesToOpposite(CustomArray array) {
-    int[] temp = array.getArray();
-    for (var i = 0; i < temp.length; ++i) {
-      if (temp[i] < 0) {
-        temp[i] *= -1;
+    if (array != null) {
+      int[] temp = array.getArray();
+      for (var i = 0; i < temp.length; ++i) {
+        if (temp[i] < 0) {
+          temp[i] *= -1;
+        }
       }
+      array.setArray(temp);
     }
-    array.setArray(temp);
     logger.info("All negative elements were changed to opposite");
   }
 
   @Override
   public void changeMinValueToMaxValue(CustomArray array) throws CustomArrayException {
-    int[] temp = array.getArray();
-    ArrayCalculateService service = new ArrayCalculateServiceImpl();
-    int min = service.findMin(array);
-    int max = service.findMax(array);
-    for (var i = 0; i < temp.length; ++i) {
-      if (temp[i] == min) {
-        temp[i] = max;
+    if (array == null || array.isEmpty()) {
+      logger.error("Max and min elements can't be found in empty array");
+      throw new CustomArrayException("Max and min elements can't be found in empty array");
+    } else {
+      int[] temp = array.getArray();
+      ArrayCalculateService service = new ArrayCalculateServiceImpl();
+      int min = service.findMin(array);
+      int max = service.findMax(array);
+      if (min != max) {
+        for (var i = 0; i < temp.length; ++i) {
+          if (temp[i] == min) {
+            temp[i] = max;
+          }
+        }
+        array.setArray(temp);
       }
     }
-    array.setArray(temp);
     logger.info("All min elements were changed to max elements");
   }
 }

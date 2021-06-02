@@ -8,14 +8,16 @@ import org.apache.logging.log4j.Logger;
 
 public class ArrayCalculateServiceImpl implements ArrayCalculateService {
 
-  private static final Logger logger = LogManager.getLogger();
+  private static final Logger logger = LogManager.getLogger("ArrayCalculateService");
 
   @Override
   public long calculateSumOfArrayElements(CustomArray array) {
     var sum = 0L;
-    int[] temp = array.getArray();
-    for (int j : temp) {
-      sum += j;
+    if (array != null) {
+      int[] temp = array.getArray();
+      for (int j : temp) {
+        sum += j;
+      }
     }
     logger.info("Calculate sum of array elements: " + sum);
     return sum;
@@ -23,7 +25,7 @@ public class ArrayCalculateServiceImpl implements ArrayCalculateService {
 
   @Override
   public double calculateAverageOfArrayElements(CustomArray array) throws CustomArrayException {
-    if (array.isEmpty()|| array==null) {
+    if (array == null || array.isEmpty()) {
       logger.error("Average of elements can't be found in empty array");
       throw new CustomArrayException("Average of elements can't be found in empty array");
     }
@@ -36,10 +38,12 @@ public class ArrayCalculateServiceImpl implements ArrayCalculateService {
   @Override
   public int calculateAmountOfPositiveArrayElements(CustomArray array) {
     var amountOfPositiveArrayElements = 0;
-    int[] temp = array.getArray();
-    for (int j : temp) {
-      if (j > 0) {
-        ++amountOfPositiveArrayElements;
+    if (array != null) {
+      int[] temp = array.getArray();
+      for (int j : temp) {
+        if (j > 0) {
+          ++amountOfPositiveArrayElements;
+        }
       }
     }
     logger.info("Calculate amount of positive array elements: " + amountOfPositiveArrayElements);
@@ -49,10 +53,12 @@ public class ArrayCalculateServiceImpl implements ArrayCalculateService {
   @Override
   public int calculateAmountOfNegativeArrayElements(CustomArray array) {
     var amountOfNegativeArrayElements = 0;
-    int[] temp = array.getArray();
-    for (int j : temp) {
-      if (j < 0) {
-        ++amountOfNegativeArrayElements;
+    if (array != null) {
+      int[] temp = array.getArray();
+      for (int j : temp) {
+        if (j < 0) {
+          ++amountOfNegativeArrayElements;
+        }
       }
     }
     logger.info("Calculate amount of negative array elements: " + amountOfNegativeArrayElements);
@@ -61,7 +67,7 @@ public class ArrayCalculateServiceImpl implements ArrayCalculateService {
 
   @Override
   public int findMin(CustomArray array) throws CustomArrayException {
-    if (array.isEmpty()|| array==null) {
+    if (array == null || array.isEmpty()) {
       logger.error("Min element can't be found in empty array");
       throw new CustomArrayException("Min element can't be found in empty array");
     }
@@ -78,7 +84,7 @@ public class ArrayCalculateServiceImpl implements ArrayCalculateService {
 
   @Override
   public int findMax(CustomArray array) throws CustomArrayException {
-    if (array.isEmpty()|| array==null) {
+    if (array == null || array.isEmpty()) {
       logger.error("Max element can't be found in empty array");
       throw new CustomArrayException("Max element can't be found in empty array");
     }

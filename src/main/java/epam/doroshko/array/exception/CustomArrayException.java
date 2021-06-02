@@ -1,6 +1,6 @@
 package epam.doroshko.array.exception;
 
-public class CustomArrayException extends Exception{
+public class CustomArrayException extends Exception {
 
   public CustomArrayException() {
     super();
