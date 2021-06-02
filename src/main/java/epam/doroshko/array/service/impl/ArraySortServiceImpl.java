@@ -5,8 +5,11 @@ import epam.doroshko.array.service.ArraySortService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Random;
+
 public class ArraySortServiceImpl implements ArraySortService {
   private static final Logger logger = LogManager.getLogger("ArraySortService");
+  private final Random medianRandom = new Random();
 
   //TODO rewrite quick sort
   @Override
@@ -30,7 +33,7 @@ public class ArraySortServiceImpl implements ArraySortService {
 
   @Override
   public void quickSort(CustomArray array) {
-    if (array != null) {
+    if (array != null && !array.isEmpty()) {
       int[] temp = array.getArray();
       quickSort(temp, 0, temp.length - 1);
       array.setArray(temp);
@@ -67,10 +70,29 @@ public class ArraySortServiceImpl implements ArraySortService {
   }
 
   private void quickSort(int[] array, int left, int right) {
-    if (left < right) {
-      int middle = recalculateMiddle(array, left, right);
-      quickSort(array, left, middle);
-      quickSort(array, middle + 1, right);
+    int leftIndex = left;
+    int rightIndex = right;
+    int median = array[leftIndex + medianRandom.nextInt(rightIndex - leftIndex)];
+    while (leftIndex <= rightIndex) {
+      while (array[leftIndex] < median) {
+        leftIndex++;
+      }
+      while (array[rightIndex] > median) {
+        rightIndex--;
+      }
+      if (leftIndex <= rightIndex) {
+        int tmp = array[leftIndex];
+        array[leftIndex] = array[rightIndex];
+        array[rightIndex] = tmp;
+        leftIndex++;
+        rightIndex--;
+      }
+    }
+    if (left < rightIndex) {
+      quickSort(array, left, rightIndex);
+    }
+    if (right > leftIndex) {
+      quickSort(array, leftIndex, right);
     }
   }
 
