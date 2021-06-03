@@ -11,7 +11,6 @@ public class ArraySortServiceImpl implements ArraySortService {
   private static final Logger logger = LogManager.getLogger("ArraySortService");
   private final Random medianRandom = new Random();
 
-  //TODO rewrite quick sort
   @Override
   public void bubbleSort(CustomArray array) {
     if (array != null) {

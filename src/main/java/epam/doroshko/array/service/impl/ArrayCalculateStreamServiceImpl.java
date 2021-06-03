@@ -6,32 +6,30 @@ import epam.doroshko.array.service.ArrayCalculateService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class ArrayCalculateServiceImpl implements ArrayCalculateService {
+import java.util.Arrays;
 
+public class ArrayCalculateStreamServiceImpl implements ArrayCalculateService {
   private static final Logger logger = LogManager.getLogger("ArrayCalculateService");
 
   @Override
-  public long calculateSumOfArrayElements(CustomArray array) {
+  public long calculateSumOfArrayElements(CustomArray array) throws CustomArrayException {
     var sum = 0L;
     if (array != null) {
-      int[] temp = array.getArray();
-      for (int j : temp) {
-        sum += j;
-      }
+      sum = Arrays.stream(array.getArray()).sum();
     }
-    logger.info("Calculated sum of array elements: " + sum);
+    logger.info("Calculated sum of array elements with stream: " + sum);
     return sum;
   }
 
   @Override
   public double calculateAverageOfArrayElements(CustomArray array) throws CustomArrayException {
+    double average = 0;
     if (array == null || array.isEmpty()) {
       logger.error("Average of elements can't be found in empty array");
       throw new CustomArrayException("Average of elements can't be found in empty array");
     }
-    int[] temp = array.getArray();
-    double average = (double) calculateSumOfArrayElements(array) / temp.length;
-    logger.info("Calculated average of array elements: " + average);
+    average = Arrays.stream(array.getArray()).average().getAsDouble();
+    logger.info("Calculated average of array elements with stream: " + average);
     return average;
   }
 
@@ -39,12 +37,7 @@ public class ArrayCalculateServiceImpl implements ArrayCalculateService {
   public int calculateAmountOfPositiveArrayElements(CustomArray array) {
     var amountOfPositiveArrayElements = 0;
     if (array != null) {
-      int[] temp = array.getArray();
-      for (int j : temp) {
-        if (j > 0) {
-          ++amountOfPositiveArrayElements;
-        }
-      }
+      amountOfPositiveArrayElements=(int)Arrays.stream(array.getArray()).filter(i->i>0).count();
     }
     logger.info("Calculated amount of positive array elements: " + amountOfPositiveArrayElements);
     return amountOfPositiveArrayElements;
@@ -54,12 +47,7 @@ public class ArrayCalculateServiceImpl implements ArrayCalculateService {
   public int calculateAmountOfNegativeArrayElements(CustomArray array) {
     var amountOfNegativeArrayElements = 0;
     if (array != null) {
-      int[] temp = array.getArray();
-      for (int j : temp) {
-        if (j < 0) {
-          ++amountOfNegativeArrayElements;
-        }
-      }
+      amountOfNegativeArrayElements=(int)Arrays.stream(array.getArray()).filter(i->i<0).count();
     }
     logger.info("Calculated amount of negative array elements: " + amountOfNegativeArrayElements);
     return amountOfNegativeArrayElements;
@@ -71,13 +59,7 @@ public class ArrayCalculateServiceImpl implements ArrayCalculateService {
       logger.error("Min element can't be found in empty array");
       throw new CustomArrayException("Min element can't be found in empty array");
     }
-    int[] temp = array.getArray();
-    int min = temp[0];
-    for (var i = 1; i < temp.length; ++i) {
-      if (min > temp[i]) {
-        min = temp[i];
-      }
-    }
+    int min = Arrays.stream(array.getArray()).min().getAsInt();
     logger.info("Find min: " + min);
     return min;
   }
@@ -88,13 +70,7 @@ public class ArrayCalculateServiceImpl implements ArrayCalculateService {
       logger.error("Max element can't be found in empty array");
       throw new CustomArrayException("Max element can't be found in empty array");
     }
-    int[] temp = array.getArray();
-    int max = temp[0];
-    for (var i = 1; i < temp.length; ++i) {
-      if (max < temp[i]) {
-        max = temp[i];
-      }
-    }
+    int max = Arrays.stream(array.getArray()).max().getAsInt();
     logger.info("Find max: " + max);
     return max;
   }

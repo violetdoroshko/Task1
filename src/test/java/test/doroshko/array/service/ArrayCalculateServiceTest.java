@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertThrows;
 
-public class ArrayServiceCalculateTest {
+public class ArrayCalculateServiceTest {
   private final ArrayCalculateService service = new ArrayCalculateServiceImpl();
   CustomArray baselineArray;
   CustomArray emptyArray;
