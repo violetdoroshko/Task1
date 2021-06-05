@@ -94,25 +94,4 @@ public class ArraySortServiceImpl implements ArraySortService {
       quickSort(array, leftIndex, right);
     }
   }
-
-  private int recalculateMiddle(int[] array, int leftBorder, int rightBorder) {
-    int middleIndex = (leftBorder + rightBorder) / 2;
-    int leftIndex = leftBorder;
-    int rightIndex = rightBorder;
-    while (leftIndex <= rightIndex) {
-      while (array[leftIndex] < array[middleIndex]) {
-        ++leftIndex;
-      }
-      while (array[rightIndex] > array[middleIndex]) {
-        --rightIndex;
-      }
-      if (leftIndex >= rightIndex) {
-        break;
-      }
-      swap(array, leftIndex++, rightIndex--);
-    }
-    return rightIndex;
-  }
-
-
 }

@@ -36,6 +36,10 @@ public class CustomArray {
     return array[i];
   }
 
+  public boolean isEmpty() {
+    return this.getLength() == 0;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -51,10 +55,6 @@ public class CustomArray {
   @Override
   public int hashCode() {
     return Arrays.hashCode(array);
-  }
-
-  public boolean isEmpty() {
-    return this.getLength() == 0;
   }
 
   @Override

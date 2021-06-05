@@ -17,7 +17,7 @@ public class CustomArrayReaderImpl implements CustomArrayReader {
   @Override
   public String readCustomArrayFromFile(String path) throws CustomArrayException {
 
-    var resultString = "";
+    String resultString = null;
 
     try {
       var bufferedReader = new BufferedReader(new FileReader(path));

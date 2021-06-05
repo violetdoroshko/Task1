@@ -37,7 +37,7 @@ public class ArrayCalculateStreamServiceImpl implements ArrayCalculateService {
   public int calculateAmountOfPositiveArrayElements(CustomArray array) {
     var amountOfPositiveArrayElements = 0;
     if (array != null) {
-      amountOfPositiveArrayElements=(int)Arrays.stream(array.getArray()).filter(i->i>0).count();
+      amountOfPositiveArrayElements = (int) Arrays.stream(array.getArray()).filter(i -> i > 0).count();
     }
     logger.info("Calculated amount of positive array elements: " + amountOfPositiveArrayElements);
     return amountOfPositiveArrayElements;
@@ -47,7 +47,7 @@ public class ArrayCalculateStreamServiceImpl implements ArrayCalculateService {
   public int calculateAmountOfNegativeArrayElements(CustomArray array) {
     var amountOfNegativeArrayElements = 0;
     if (array != null) {
-      amountOfNegativeArrayElements=(int)Arrays.stream(array.getArray()).filter(i->i<0).count();
+      amountOfNegativeArrayElements = (int) Arrays.stream(array.getArray()).filter(i -> i < 0).count();
     }
     logger.info("Calculated amount of negative array elements: " + amountOfNegativeArrayElements);
     return amountOfNegativeArrayElements;
@@ -59,7 +59,7 @@ public class ArrayCalculateStreamServiceImpl implements ArrayCalculateService {
       logger.error("Min element can't be found in empty array");
       throw new CustomArrayException("Min element can't be found in empty array");
     }
-    int min = Arrays.stream(array.getArray()).min().getAsInt();
+    var min = Arrays.stream(array.getArray()).min().getAsInt();
     logger.info("Find min: " + min);
     return min;
   }
@@ -70,7 +70,7 @@ public class ArrayCalculateStreamServiceImpl implements ArrayCalculateService {
       logger.error("Max element can't be found in empty array");
       throw new CustomArrayException("Max element can't be found in empty array");
     }
-    int max = Arrays.stream(array.getArray()).max().getAsInt();
+    var max = Arrays.stream(array.getArray()).max().getAsInt();
     logger.info("Find max: " + max);
     return max;
   }

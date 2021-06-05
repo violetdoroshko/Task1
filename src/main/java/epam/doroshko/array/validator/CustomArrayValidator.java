@@ -3,7 +3,7 @@ package epam.doroshko.array.validator;
 import java.util.regex.Pattern;
 
 public class CustomArrayValidator {
-  private static final String IS_NUMBER = "^[-?[\\d]+\\s]+$";
+  private static final String IS_NUMBER = "^-?(\\d)+((\\s)+-?(\\d)+)*$";
 
   private CustomArrayValidator() {
   }
